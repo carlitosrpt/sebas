@@ -13,14 +13,14 @@
         margin: 0;
         padding: 0;
         font-family: 'Poppins', sans-serif;
-        background: #ff9dbb; /* Rosado pastel fuerte */
+        background: url('img/fondo.png') no-repeat center center fixed;
+        background-size: cover;
         position: relative;
         color: #4b2354;
         text-align: center;
         overflow-x: hidden;
     }
 
-    /* Estrellitas animadas */
     body::before {
         content: "";
         position: fixed;
@@ -28,25 +28,22 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image:
-            radial-gradient(#fff8, 1px, transparent 1px),
-            radial-gradient(#fff8, 1px, transparent 1px);
-        background-size: 50px 50px, 100px 100px;
-        animation: estrellas 15s linear infinite;
+        background: linear-gradient(-45deg, rgba(255, 105, 180, 0.4), rgba(255, 182, 193, 0.4), rgba(255, 192, 203, 0.4), rgba(255, 182, 193, 0.4));
+        background-size: 400% 400%;
+        animation: moverFondo 15s ease infinite;
         z-index: 0;
     }
 
-    @keyframes estrellas {
-        from { background-position: 0 0, 0 0; }
-        to { background-position: 50px 50px, 100px 100px; }
+    @keyframes moverFondo {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
 
     h1 {
         font-family: 'Great Vibes', cursive;
         font-size: 3em;
         color: #a83279;
-        position: relative;
-        z-index: 1;
     }
 
     .mensaje-inicial {
@@ -95,7 +92,7 @@
 <body>
 
 <div class="mensaje-inicial">
-    <h1>💌 Camila, abre tu regalo 💌</h1>
+    <h1>💖 Camila, abre tu regalo 🎀</h1>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7cUJHqmkiqyWReZsy_cxa5NpyP5ivCp42vQ&s" alt="Hello Kitty" class="kitty-img" id="abrirCarta">
 </div>
 
@@ -110,17 +107,21 @@
     const textoCarta = document.getElementById('textoCarta');
     let kittyActivas = false;
 
-    const mensaje = `Camila, mi amor, hoy es tu cumpleaños y no puedo evitar sentirme lleno de alegría y gratitud. ¡Felices 21 años, mi vida! Quiero agradecerte por todo lo que eres para mí, por cada momento que compartimos juntos, por cada sonrisa que me regalas, por cada abrazo que me das, por cada palabra de amor que me dices. Eres la mejor novia del mundo, la mejor hija y hermana que alguien podría pedir. Tu corazón es puro, tu alma es brillante y tu amor es incondicional. Me siento afortunado de tenerte en mi vida, de poder compartir mis sueños y mis miedos contigo, de poder reír y llorar juntos.
+    const mensaje = `💖🌹 Camila, mi amor 🌹💖  
+Hoy es un día muy especial porque celebramos tus 👑 21 años 🎀.  
+Gracias por ser la persona increíble que eres 💖, por llenar mi vida de amor 🌹 y alegría.  
 
-Te amo más que palabras pueden expresar 🩶. Gracias por ser mi compañera, mi apoyo y mi amor. Gracias por estar ahí para mí en los momentos buenos y malos, por escucharme cuando necesito hablar, por hacerme sentir que no estoy solo. Eres mi refugio, mi hogar, mi lugar seguro. Quiero que sepas que estoy aquí para ti, siempre, para apoyarte, para amarte y para hacerte feliz.
+Eres mi princesa 👑, mi compañera 🎀, mi todo 💖.  
+Cada momento contigo es un regalo 🌹 que atesoro con todo mi corazón 💖.  
 
-Que este nuevo año de vida esté lleno de felicidad, amor y sueños cumplidos. Quiero que sigas siendo tú, que sigas siendo esa persona increíble que eres, que sigas haciendo que mi vida sea más rica y más plena. Te amo, Camila, con todo mi corazón, con toda mi alma. ¡Feliz cumpleaños, mi princesa 🩶👸🏻`;
+Te amo más de lo que las palabras pueden expresar 💖🌹.  
+Feliz cumpleaños, mi reina 👑🎀💖.`;
 
     function escribirTexto(texto, elemento, velocidad) {
         let i = 0;
         function escribir() {
             if (i < texto.length) {
-                elemento.textContent += texto.charAt(i);
+                elemento.innerHTML += texto.charAt(i);
                 i++;
                 setTimeout(escribir, velocidad);
             }
@@ -134,13 +135,13 @@ Que este nuevo año de vida esté lleno de felicidad, amor y sueños cumplidos. 
         escribirTexto(mensaje, textoCarta, 40);
 
         if (!kittyActivas) {
-            const imagenes = ["1.jpg", "2.jpg", "3.jpg", "g"]; // Lista de imágenes
+            const imagenes = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
             setInterval(() => {
                 const kitty = document.createElement("img");
                 kitty.src = imagenes[Math.floor(Math.random() * imagenes.length)];
                 kitty.classList.add("kitty-flotante");
 
-                const size = Math.random() * 20 + 20 + "px"; // Más pequeñas
+                const size = Math.random() * 25 + 20 + "px";
                 kitty.style.width = size;
                 kitty.style.left = Math.random() * 100 + "vw";
                 kitty.style.animationDuration = Math.random() * 5 + 5 + "s";
